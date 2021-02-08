@@ -7,8 +7,8 @@ Solution for Managing a Company's Employees using Node, Inquirer, and MySQL.
 
 
 # Links for the Github Repo and video
-[Video](https://drive.google.com/file/d/1hicCq-8l-2gHrRhUyZqTiHvAaX1EZEw8/view)
+[Video]()
 
-[Github Repo Page](https://github.com/rebeccachiquete/Team-Profile-Gen)
+[Github Repo Page](https://github.com/rebeccachiquete/Employee-Tracker)
 ​
 ​
