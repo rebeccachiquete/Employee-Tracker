@@ -148,3 +148,33 @@ function addEmployee() {
         });
       });
   }
+
+
+  function addRole() {
+    inquirer
+      .prompt( [{
+        name: "employeeTitle",
+        type: "input",
+        message: "What is your title?"
+      },
+
+      {
+        name: "employeeSalary",
+        type: "input",
+        message: "What is your salary?"
+      },
+
+      {
+        name: "employeeDepartmentID",
+        type: "input",
+        message: "What is your department ID?"
+      },
+    ])
+      .then(function(answer) {
+        var query = "INSERT INTO role (title, salary, department_id) VALUES (?,?,?)";
+        connection.query(query, [answer.employeeTitle, answer.employeeSalary, answer.employeeDepartmentID] , function(err, res) {
+          if (err) throw err;
+          viewRole();
+        });
+      });
+  }
