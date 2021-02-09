@@ -32,7 +32,8 @@ function begin() {
         "View Employee",
         "View Role",
         "View Department",
-        "Leave",
+        "Update Employee Roles",
+        "Exit",
       ]
     })
     .then(function(answer) {
@@ -61,14 +62,46 @@ function begin() {
         viewDepartment();
         break;
 
-       case "Leave":
-        leave();
+        case "Update Employee Roles":
+        updateRoles();
+        break;
+
+       case "Exit":
+        exit();
         break;
       }
     });
 }
 
-// function artistSearch() {
+function viewEmployee() {
+  var query = "SELECT * FROM employee";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res)
+    begin();
+  });
+}
+
+function viewDepartment() {
+    var query = "SELECT * FROM department";
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      console.table(res)
+      begin();
+    });
+  }
+
+  function viewRole() {
+    var query = "SELECT * FROM role";
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      console.table(res)
+      begin();
+    });
+  }
+
+
+// function addEmployee() {
 //   inquirer
 //     .prompt({
 //       name: "artist",
@@ -86,15 +119,6 @@ function begin() {
 //     });
 // }
 
-// function multiSearch() {
-//   var query = "SELECT artist FROM top5000 GROUP BY artist HAVING count(*) > 1";
-//   connection.query(query, function(err, res) {
-//     for (var i = 0; i < res.length; i++) {
-//       console.log(res[i].artist);
-//     }
-//     runSearch();
-//   });
-// }
 
 // function rangeSearch() {
 //   inquirer
