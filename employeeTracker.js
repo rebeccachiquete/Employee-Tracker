@@ -83,6 +83,14 @@ function viewEmployee() {
   });
 }
 
+// const viewEmployee = () => {
+//     connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON role.department_id = department.id", (err, res) =>{
+//       if (err) throw err;
+//       begin();
+//           })
+//       };
+  
+
 function viewDepartment() {
     var query = "SELECT * FROM department";
     connection.query(query, function(err, res) {
@@ -147,7 +155,7 @@ function addEmployee() {
           viewEmployee();
         });
       });
-  }
+  };
 
 
   function addRole() {
@@ -178,3 +186,42 @@ function addEmployee() {
         });
       });
   }
+
+
+  function updateRoles() {
+      inquirer
+      .prompt([
+          {
+            name: "employeeFirstName",
+            type: "input",
+            message: "What is the First Name of the Employee you need to update?",
+          },
+          {
+            name: "employeeLastName",
+            type: "input",
+            message: "What is the Last Name of the Employee you need to update?",
+          },
+          {
+            name: "employeeNewRole",
+            type: "input",
+            message: "What is the new Role for the employee?",
+          }
+      ])
+      .then(function(answer) {
+        var query = "UPDATE employee SET ? WHERE ? ";
+        connection.query(query, 
+            [{
+                first_name: answer.employeeFirstName
+            },
+            {
+                last_name: answer.employeeLastName
+            },
+            {
+                role_id: parseInt(answer.employeeNewRole)
+            }] , 
+            function(err, res) {
+             if (err) throw err;
+             viewEmployee();
+        });
+      });
+  };

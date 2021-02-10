@@ -12,3 +12,5 @@ Solution for Managing a Company's Employees using Node, Inquirer, and MySQL.
 [Github Repo Page](https://github.com/rebeccachiquete/Employee-Tracker)
 ​
 ​
+
+
