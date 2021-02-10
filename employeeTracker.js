@@ -75,21 +75,13 @@ function begin() {
 }
 
 function viewEmployee() {
-  var query = "SELECT * FROM employee";
+  var query = "SELECT first_name, last_name, title, salary, dept_name FROM employee INNER join role ON employee.role_id=role.id INNER join department ON role.department_id=department.id";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res)
     begin();
   });
 }
-
-// const viewEmployee = () => {
-//     connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON role.department_id = department.id", (err, res) =>{
-//       if (err) throw err;
-//       begin();
-//           })
-//       };
-  
 
 function viewDepartment() {
     var query = "SELECT * FROM department";
@@ -193,8 +185,8 @@ function addEmployee() {
       .prompt([
           {
             name: "employeeFirstName",
-            type: "input",
-            message: "What is the First Name of the Employee you need to update?",
+            type: "list",
+            message: "What is the name of the employee you would like to update?",
           },
           {
             name: "employeeLastName",
@@ -208,7 +200,8 @@ function addEmployee() {
           }
       ])
       .then(function(answer) {
-        var query = "UPDATE employee SET ? WHERE ? ";
+        var query = "UPDATE role SET ? WHERE ? ";
+        // UPDATE role SET title = "sys admin" WHERE department_id = 9;
         connection.query(query, 
             [{
                 first_name: answer.employeeFirstName
