@@ -180,41 +180,41 @@ function addEmployee() {
   }
 
 
-  function updateRoles() {
-      inquirer
-      .prompt([
-          {
-            name: "employeeFirstName",
-            type: "list",
-            message: "What is the name of the employee you would like to update?",
-          },
-          {
-            name: "employeeLastName",
-            type: "input",
-            message: "What is the Last Name of the Employee you need to update?",
-          },
-          {
-            name: "employeeNewRole",
-            type: "input",
-            message: "What is the new Role for the employee?",
-          }
-      ])
-      .then(function(answer) {
-        var query = "UPDATE role SET ? WHERE ? ";
-        // UPDATE role SET title = "sys admin" WHERE department_id = 9;
-        connection.query(query, 
-            [{
-                first_name: answer.employeeFirstName
-            },
-            {
-                last_name: answer.employeeLastName
-            },
-            {
-                role_id: parseInt(answer.employeeNewRole)
-            }] , 
-            function(err, res) {
-             if (err) throw err;
-             viewEmployee();
-        });
-      });
-  };
+  // function updateRoles() {
+  //     inquirer
+  //     .prompt([
+  //         {
+  //           name: "employeeFirstName",
+  //           type: "list",
+  //           message: "What is the name of the employee you would like to update?",
+  //         },
+  //         {
+  //           name: "employeeLastName",
+  //           type: "input",
+  //           message: "What is the Last Name of the Employee you need to update?",
+  //         },
+  //         {
+  //           name: "employeeNewRole",
+  //           type: "input",
+  //           message: "What is the new Role for the employee?",
+  //         }
+  //     ])
+  //     .then(function(answer) {
+  //       var query = "UPDATE role SET ? WHERE ? ";
+  //       // UPDATE role SET title = "sys admin" WHERE department_id = 9;
+  //       connection.query(query, 
+  //           [{
+  //               first_name: answer.employeeFirstName
+  //           },
+  //           {
+  //               last_name: answer.employeeLastName
+  //           },
+  //           {
+  //               role_id: parseInt(answer.employeeNewRole)
+  //           }] , 
+  //           function(err, res) {
+  //            if (err) throw err;
+  //            viewEmployee();
+  //       });
+  //     });
+  // };
